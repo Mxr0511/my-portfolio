@@ -1,6 +1,6 @@
 # my-portfolio
 
-# Manila Rangineni - Portfolio
+# Manila Rao - Portfolio
 
 Full Stack Software Engineer with 8+ years of experience building scalable, enterprise-grade applications.
 
