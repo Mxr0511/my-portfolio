@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manila Rangineni - Full Stack Software Engineer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #4a5568;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #4a5568;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #667eea;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 120px 0 80px;
+            text-align: center;
+            color: white;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            backdrop-filter: blur(5px);
+        }
+
+        .contact-item a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: white;
+            color: #667eea;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn-outline:hover {
+            background: white;
+            color: #667eea;
+        }
+
+        /* Main Content */
+        main {
+            background: white;
+            margin-top: -50px;
+            border-radius: 30px 30px 0 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        .section {
+            padding: 4rem 0;
+        }
+
+        .section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            text-align: center;
+            color: #2d3748;
+        }
+
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #4a5568;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 1.5rem;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border-radius: 15px;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: bold;
+            display: block;
+        }
+
+        /* Skills Section */
+        .skills {
+            background: #f7fafc;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-category {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .skill-category:hover {
+            transform: translateY(-5px);
+        }
+
+        .skill-category h3 {
+            color: #667eea;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .skill-tag {
+            background: #e2e8f0;
+            color: #4a5568;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        /* Experience Section */
+        .experience-timeline {
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .experience-timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, #667eea, #764ba2);
+        }
+
+        .experience-item {
+            position: relative;
+            margin-bottom: 3rem;
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            margin-left: 2rem;
+        }
+
+        .experience-item::before {
+            content: '';
+            position: absolute;
+            left: -3rem;
+            top: 2rem;
+            width: 12px;
+            height: 12px;
+            background: #667eea;
+            border-radius: 50%;
+            border: 3px solid white;
+        }
+
+        .experience-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .experience-title {
+            color: #2d3748;
+            font-size: 1.3rem;
+            font-weight: bold;
+        }
+
+        .experience-company {
+            color: #667eea;
+            font-weight: 600;
+        }
+
+        .experience-date {
+            color: #718096;
+            font-weight: 500;
+        }
+
+        .experience-description {
+            color: #4a5568;
+            line-height: 1.7;
+            margin-bottom: 1rem;
+        }
+
+        .achievements {
+            list-style: none;
+        }
+
+        .achievements li {
+            position: relative;
+            padding-left: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: #4a5568;
+        }
+
+        .achievements li::before {
+            content: '▶';
+            position: absolute;
+            left: 0;
+            color: #667eea;
+        }
+
+        /* Education Section */
+        .education {
+            background: #f7fafc;
+        }
+
+        .education-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .education-item {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .education-degree {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #2d3748;
+            margin-bottom: 0.5rem;
+        }
+
+        .education-school {
+            color: #667eea;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .education-date {
+            color: #718096;
+        }
+
+        /* Footer */
+        footer {
+            background: #2d3748;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-links a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: #667eea;
+            transform: translateY(-2px);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .contact-info {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .stats {
+                grid-template-columns: 1fr;
+            }
+
+            .experience-timeline {
+                padding-left: 1rem;
+            }
+
+            .experience-item {
+                margin-left: 1rem;
+            }
+
+            .experience-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        /* Scroll animations */
+        .scroll-animate {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .scroll-animate.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">Manila Rangineni</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="container">
+            <h1 class="fade-in">Manila Rangineni</h1>
+            <p class="fade-in">Full Stack Software Engineer with 8+ years of experience building scalable, enterprise-grade applications</p>
+            
+            <div class="contact-info fade-in">
+                <div class="contact-item">
+                    <span>📍</span>
+                    <span>Bentonville, AR</span>
+                </div>
+                <div class="contact-item">
+                    <span>📧</span>
+                    <a href="mailto:rmanila181@gmail.com">rmanila181@gmail.com</a>
+                </div>
+                <div class="contact-item">
+                    <span>📱</span>
+                    <a href="tel:4174209291">(417) 420-9291</a>
+                </div>
+            </div>
+
+            <div class="cta-buttons fade-in">
+                <a href="#contact" class="btn btn-primary">Get In Touch</a>
+                <a href="https://github.com/Mxr0511" class="btn btn-outline" target="_blank">View GitHub</a>
+                <a href="https://www.linkedin.com/in/manila-rao" class="btn btn-outline" target="_blank">LinkedIn</a>
+            </div>
+        </div>
+    </section>
+
+    <main>
+        <section id="about" class="section">
+            <div class="container">
+                <h2 class="scroll-animate">About Me</h2>
+                <div class="about-content">
+                    <div class="about-text scroll-animate">
+                        <p>I'm an accomplished full-stack software engineer with over 8 years of experience building scalable, enterprise-grade applications across major technology companies including Walmart, Apple, Anheuser Busch, and HCL Technologies.</p>
+                        
+                        <p>My expertise spans the entire software development lifecycle, from designing intuitive user interfaces with React.js to architecting robust backend services with Java and Spring Boot. I'm passionate about automation, performance optimization, and creating solutions that scale with business growth.</p>
+                        
+                        <p>I thrive in collaborative environments, leading technical initiatives, and mentoring team members while consistently delivering high-impact projects that streamline business operations and enhance system reliability.</p>
+                    </div>
+                    <div class="stats scroll-animate">
+                        <div class="stat-item">
+                            <span class="stat-number">8+</span>
+                            <span>Years Experience</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">4</span>
+                            <span>Major Companies</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">15+</span>
+                            <span>Technologies</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">100%</span>
+                            <span>Commitment</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills" class="section skills">
+            <div class="container">
+                <h2 class="scroll-animate">Technical Skills</h2>
+                <div class="skills-grid">
+                    <div class="skill-category scroll-animate">
+                        <h3>Frontend Development</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag">React.js</span>
+                            <span class="skill-tag">Redux</span>
+                            <span class="skill-tag">TypeScript</span>
+                            <span class="skill-tag">JavaScript</span>
+                            <span class="skill-tag">HTML5</span>
+                            <span class="skill-tag">CSS3</span>
+                            <span class="skill-tag">Tailwind CSS</span>
+                            <span class="skill-tag">Cypress</span>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-category scroll-animate">
+                        <h3>Backend Development</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Java</span>
+                            <span class="skill-tag">Spring Boot</span>
+                            <span class="skill-tag">Python</span>
+                            <span class="skill-tag">Node.js</span>
+                            <span class="skill-tag">Express.js</span>
+                            <span class="skill-tag">Flask</span>
+                            <span class="skill-tag">RESTful APIs</span>
+                            <span class="skill-tag">GraphQL</span>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-category scroll-animate">
+                        <h3>Cloud & Infrastructure</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Azure</span>
+                            <span class="skill-tag">AWS</span>
+                            <span class="skill-tag">Kubernetes</span>
+                            <span class="skill-tag">Docker</span>
+                            <span class="skill-tag">OpenStack</span>
+                            <span class="skill-tag">CI/CD</span>
+                            <span class="skill-tag">Jenkins</span>
+                            <span class="skill-tag">GitHub Actions</span>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-category scroll-animate">
+                        <h3>Databases & Storage</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag">PostgreSQL</span>
+                            <span class="skill-tag">MySQL</span>
+                            <span class="skill-tag">MongoDB</span>
+                            <span class="skill-tag">Redis</span>
+                            <span class="skill-tag">Azure SQL</span>
+                            <span class="skill-tag">Cosmos DB</span>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-category scroll-animate">
+                        <h3>DevOps & Monitoring</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Prometheus</span>
+                            <span class="skill-tag">Grafana</span>
+                            <span class="skill-tag">Splunk</span>
+                            <span class="skill-tag">OpenObserve</span>
+                            <span class="skill-tag">Apache Kafka</span>
+                            <span class="skill-tag">Git</span>
+                            <span class="skill-tag">Bash</span>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-category scroll-animate">
+                        <h3>Testing & Quality</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Jest</span>
+                            <span class="skill-tag">JUnit</span>
+                            <span class="skill-tag">React Testing Library</span>
+                            <span class="skill-tag">Postman</span>
+                            <span class="skill-tag">JMeter</span>
+                            <span class="skill-tag">Locust</span>
+                            <span class="skill-tag">Lighthouse</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="experience" class="section">
+            <div class="container">
+                <h2 class="scroll-animate">Professional Experience</h2>
+                <div class="experience-timeline">
+                    <div class="experience-item scroll-animate">
+                        <div class="experience-header">
+                            <div>
+                                <div class="experience-title">Software Engineer II</div>
+                                <div class="experience-company">Walmart Inc.</div>
+                            </div>
+                            <div class="experience-date">Oct 2022 - June 2025</div>
+                        </div>
+                        <div class="experience-description">
+                            Led development of an internal vendor onboarding and traceability platform that revolutionized product listing processes and supply chain transparency. Architected modular, schema-driven UI components using React.js and TypeScript while building robust backend services with Java and Spring Boot.
+                        </div>
+                        <ul class="achievements">
+                            <li>Designed and built internal platform for vendor onboarding and supply chain tracking</li>
+                            <li>Created flexible, schema-based UI components with React.js, TypeScript, and Redux</li>
+                            <li>Implemented Apache Kafka for asynchronous event processing and ServiceNow API integration</li>
+                            <li>Set up comprehensive monitoring with Prometheus and Grafana</li>
+                            <li>Managed CI/CD automation using GitHub Actions and Jenkins</li>
+                            <li>Handled incident response and implemented monitoring improvements</li>
+                        </ul>
+                    </div>
+
+                    <div class="experience-item scroll-animate">
+                        <div class="experience-header">
+                            <div>
+                                <div class="experience-title">Full Stack Software Engineer</div>
+                                <div class="experience-company">Apple Inc.</div>
+                            </div>
+                            <div class="experience-date">Apr 2022 - Oct 2022</div>
+                        </div>
+                        <div class="experience-description">
+                            Focused on infrastructure automation and CI/CD optimization for distributed backend platforms. Developed reusable Python-based dashboard components and created YAML-based configuration templates that significantly reduced repetitive scripting efforts.
+                        </div>
+                        <ul class="achievements">
+                            <li>Built reusable dashboard components in Python with Flask for build status monitoring</li>
+                            <li>Developed YAML-based configuration templates for Jenkins pipeline automation</li>
+                            <li>Containerized Flask microservices with Docker and deployed on AWS</li>
+                            <li>Decreased mean time to recovery by 20% through real-time alerts and automated remediation</li>
+                            <li>Performed load testing with Locust and JMeter to verify performance</li>
+                        </ul>
+                    </div>
+
+                    <div class="experience-item scroll-animate">
+                        <div class="experience-header">
+                            <div>
+                                <div class="experience-title">Software Developer</div>
+                                <div class="experience-company">Anheuser Busch</div>
+                            </div>
+                            <div class="experience-date">June 2018 - Apr 2022</div>
+                        </div>
+                        <div class="experience-description">
+                            Designed and implemented a comprehensive B2B inventory and vendor management application providing real-time product availability tracking for regional partners. Leveraged React.js and Redux for responsive front-end dashboards.
+                        </div>
+                        <ul class="achievements">
+                            <li>Developed B2B inventory and vendor management system for regional partners</li>
+                            <li>Created responsive dashboards using React.js and Redux for real-time order processing</li>
+                            <li>Implemented Redis caching to improve application speed and reduce database load</li>
+                            <li>Enhanced MongoDB query performance and indexing strategies</li>
+                            <li>Established automated deployment processes using Jenkins and Docker</li>
+                        </ul>
+                    </div>
+
+                    <div class="experience-item scroll-animate">
+                        <div class="experience-header">
+                            <div>
+                                <div class="experience-title">Java Developer</div>
+                                <div class="experience-company">HCL Technologies</div>
+                            </div>
+                            <div class="experience-date">May 2017 - May 2018</div>
+                        </div>
+                        <div class="experience-description">
+                            Built a global content publishing platform supporting marketing teams with multi-language content management and dynamic landing page creation. Developed intuitive React.js interfaces connected to Contentful CMS.
+                        </div>
+                        <ul class="achievements">
+                            <li>Built global content publishing platform for marketing teams</li>
+                            <li>Developed React.js interfaces for drag-and-drop content management</li>
+                            <li>Implemented Apache Kafka for event-driven content publishing workflows</li>
+                            <li>Deployed services on AWS EC2 with S3 for media storage</li>
+                            <li>Developed role-based access controls and audit logging</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="education" class="section education">
+            <div class="container">
+                <h2 class="scroll-animate">Education</h2>
+                <div class="education-grid">
+                    <div class="education-item scroll-animate">
+                        <div class="education-degree">Master of Science</div>
+                        <div class="education-school">University of Central Missouri</div>
+                        <div class="education-date">Aug 2022</div>
+                        <div style="margin-top: 1rem; color: #4a5568;">Computer Science • Lee Summit, MO</div>
+                    </div>
+                    
+                    <div class="education-item scroll-animate">
+                        <div class="education-degree">Bachelor of Technology</div>
+                        <div class="education-school">AVN Institute of Engineering</div>
+                        <div class="education-date">Jun 2018</div>
+                        <div style="margin-top: 1rem; color: #4a5568;">Electronics & Communication Engineering • Hyderabad, India</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div>
+                    <h3>Let's Connect</h3>
+                    <p>Ready to discuss your next project or opportunity?</p>
+                </div>
+                <div class="social-links">
+                    <a href="mailto:rmanila181@gmail.com" title="Email">📧</a>
+                    <a href="https://www.linkedin.com/in/manila-rao" target="_blank" title="LinkedIn">💼</a>
+                    <a href="https://github.com/Mxr0511" target="_blank" title="GitHub">💻</a>
+                    <a href="tel:4174209291" title="Phone">📱</a>
+                </div>
+            </div>
+            <div style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.1); text-align: center;">
+                <p>&copy; 2025 Manila Rangineni. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Scroll animation
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.scroll-animate').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Header background on scroll
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(255, 255, 255, 0.98)';
+            } else {
+                header.style.background = 'rgba(255, 255, 255, 0.95)';
+            }
+        });
+
+        // Add hover effects to skill tags
+        document.querySelectorAll('.skill-tag').forEach(tag => {
+            tag.addEventListener('mouseenter', function() {
+                this.style.transform = 'scale(1.05)';
+                this.style.background = '#667eea';
+                this.style.color = 'white';
+            });
+            
+            tag.addEventListener('mouseleave', function() {
+                this.style.transform = 'scale(1)';
+                this.style.background = '#e2e8f0';
+                this.style.color = '#4a5568';
+            });
+        });
+
+        // Add typing effect to hero title
+        const heroTitle = document.querySelector('.hero h1');
+        const originalText = heroTitle.textContent;
+        heroTitle.textContent = '';
+        
+        let i = 0;
+        const typeWriter = () => {
+            if (i < originalText.length) {
+                heroTitle.textContent += originalText.charAt(i);
+                i++;
+                setTimeout(typeWriter, 100);
+            }
+        };
+        
+        setTimeout(typeWriter, 500);
+    </script>
+</body>
+</html>
